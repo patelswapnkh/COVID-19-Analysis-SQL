@@ -75,7 +75,65 @@ join dbo.CovidVaccinations vac
     and dea.date = vac.date 
 
 -- Looking at Total population vs Vaccination
-Select dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations
+Select dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations,
+sum(convert(int, vac.new_vaccinations)) OVER  (Partition by dea.location 
+order by dea.location, dea.date) as RollingPeopleVaccinated
+from dbo.CovidDeaths dea Join dbo.CovidVaccinations vac 
+     on dea.location = vac.location
+     and dea.date = vac.date 
+where dea.continent is not null
+order by 1,2,3
+
+-- Calculating further using CTE
+
+With popvsvaccinated (continent, location, date, population, new_vaccinations, RollingPeopleVaccinated)
+as 
+(
+Select dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations,
+sum(convert(int, vac.new_vaccinations)) OVER  (Partition by dea.location 
+order by dea.location, dea.date) as RollingPeopleVaccinated
+from dbo.CovidDeaths dea Join dbo.CovidVaccinations vac 
+     on dea.location = vac.location
+     and dea.date = vac.date 
+where dea.continent is not null
+--order by 1,2,3
+)
+Select *, (RollingPeopleVaccinated/population)*100 as PercentRollingVaccinated
+From popvsvaccinated
+
+-- Temp Table 
+Drop table if EXISTS #PercentPopulationVaccinated
+Create table #PercentPopulationVaccinated
+(
+Continent NVARCHAR (255),
+Location  NVARCHAR (255),
+Date Date,
+Population bigint,
+New_vaccinations numeric,
+RollingPeopleVaccinated numeric 
+)
+
+
+Insert INTO #PercentPopulationVaccinated
+Select dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations,
+sum(convert(int, vac.new_vaccinations)) OVER  (Partition by dea.location 
+order by dea.location, dea.date) as RollingPeopleVaccinated
+from dbo.CovidDeaths dea Join dbo.CovidVaccinations vac 
+     on dea.location = vac.location
+     and dea.date = vac.date 
+where dea.continent is not null
+--order by 1,2,3
+
+Select *, (RollingPeopleVaccinated/population)*100
+From #PercentPopulationVaccinated
+
+-- Creating view to store data for visualization
+
+Create VIEW 
+PercentPopulationVaccinated as 
+Select dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations,
+sum(cast(vac.new_vaccinations) as int ) OVER  (Partition by dea.location 
+order by dea.location, dea.date) as RollingPeopleVaccinated
 from dbo.CovidDeaths dea Join dbo.CovidVaccinations vac 
      on dea.location = vac.location
      and dea.date = vac.date 
