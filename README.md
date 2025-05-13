@@ -2,10 +2,12 @@
 
 ### Overview
 This comprehensive SQL project analyzes global COVID-19 pandemic data, revealing insights into infection patterns, mortality rates, vaccination efficacy, and geographic variations. The analysis employs advanced SQL techniques to extract meaningful trends and statistics from a robust dataset spanning multiple countries and time periods.
-Database Structure
+
+### Database Structure
 The project utilizes a SQL Server database with two primary tables:
 
 CovidDeaths: Contains comprehensive data on cases, deaths, and population metrics
+
 CovidVaccinations: Tracks vaccination administration and coverage worldwide
 
 ### Key Analyses and Epidemiological Insights
@@ -17,13 +19,17 @@ Population-Adjusted Metrics: Cases and deaths normalized by population size
 ### Mortality Analysis
 
 Case Fatality Rates: Temporal evolution of death rates in the United States
+
 Geographic Comparisons: Mortality patterns across different regions
+
 Risk Factors: Correlation between population demographics and outcomes
 
 ### Infection Dynamics
 
 Transmission Rates: Analysis of infection spread relative to population
+
 Hotspot Identification: Countries with exceptional infection rates
+
 Growth Patterns: Time-series modeling of case acceleration/deceleration
 
 ### Vaccination Effectiveness
@@ -36,19 +42,29 @@ Outcome Correlation: Analysis of vaccination rates versus case/death metrics
 ### SQL Techniques Demonstrated
 
 Data Aggregation: Utilizing COUNT, SUM, AVG, MAX functions
+
 Window Functions: Employing PARTITION BY for rolling calculations
+
 Temporary Structures: CTEs and Temp Tables for multi-stage analysis
+
 Data Transformation: CONVERT and CAST for appropriate data typing
+
 Table Relationships: JOINs connecting vaccination and case data
+
 Performance Optimization: Indexing and query structure best practices
+
 Visualization Preparation: Views created for downstream dashboard integration
 
 ### Usage Instructions
 
 Install SQL Server Management Studio (SSMS) or compatible SQL environment
+
 Create a new database named COVIDPROJ
+
 Import provided data files into the CovidDeaths and CovidVaccinations tables
+
 Execute the queries sequentially to reproduce the complete analysis
+
 Modify parameters within queries to focus on specific regions or timeframes
 
 ### Data Source
