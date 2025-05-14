@@ -1,78 +1,103 @@
 ## COVID-19 Data Analysis SQL Project
 
-### Overview
-This comprehensive SQL project analyzes global COVID-19 pandemic data, revealing insights into infection patterns, mortality rates, vaccination efficacy, and geographic variations. The analysis employs advanced SQL techniques to extract meaningful trends and statistics from a robust dataset spanning multiple countries and time periods.
+### Project Overview
 
-### Database Structure
-The project utilizes a SQL Server database with two primary tables:
+This project analyzes global COVID-19 data to identify trends and patterns across countries and continents. Using SQL, I extracted, transformed, and analyzed data from two primary datasets: COVID deaths and vaccinations. The analysis provides insights into infection rates, mortality rates, and vaccination progress worldwide. 
 
-CovidDeaths: Contains comprehensive data on cases, deaths, and population metrics
+### Technical Details
 
-CovidVaccinations: Tracks vaccination administration and coverage worldwide
+### Data Processing
 
-### Key Analyses and Epidemiological Insights
+Utilized Azure Data Studio for data querying and analysis
 
-### Global Progression: Time-series analysis tracking the pandemic's evolution
-Regional Impact: Comparative analysis across continents and countries
-Population-Adjusted Metrics: Cases and deaths normalized by population size
+Created a dedicated database (COVIDPROJ) for the project
+
+Conducted comprehensive data exploration and transformation
+
+Joined related tables using appropriate keys (location, date)
+
+Analysis Performed
+
+### Infection Analysis
+
+Tracked case progression by country and date
+
+Calculated infection rates as percentage of population
+
+Identified countries with highest infection rates relative to population
+
 
 ### Mortality Analysis
 
-Case Fatality Rates: Temporal evolution of death rates in the United States
+Calculated death percentages (deaths/cases) by location
 
-Geographic Comparisons: Mortality patterns across different regions
+Analyzed death counts by country and continent
 
-Risk Factors: Correlation between population demographics and outcomes
+Determined regions with highest mortality rates
 
-### Infection Dynamics
 
-Transmission Rates: Analysis of infection spread relative to population
+### Vaccination Progress
 
-Hotspot Identification: Countries with exceptional infection rates
+Created rolling count of vaccinations by location
 
-Growth Patterns: Time-series modeling of case acceleration/deceleration
+Calculated percentage of population vaccinated over time
 
-### Vaccination Effectiveness
+Implemented Common Table Expressions (CTEs) and temp tables for complex calculations
 
-Coverage Metrics: Vaccination progress by location and population percentage
-Temporal Tracking: Rolling vaccination counts showing momentum
-Outcome Correlation: Analysis of vaccination rates versus case/death metrics
 
-### Technical Implementation
-### SQL Techniques Demonstrated
+### Data Visualization Preparation
 
-Data Aggregation: Utilizing COUNT, SUM, AVG, MAX functions
+Created views for storing processed data
 
-Window Functions: Employing PARTITION BY for rolling calculations
+Prepared datasets for dashboard development in Tableau
 
-Temporary Structures: CTEs and Temp Tables for multi-stage analysis
+Structured data to support multiple visualization perspectives
 
-Data Transformation: CONVERT and CAST for appropriate data typing
+### Dashboard: 
+https://public.tableau.com/app/profile/swapna.ashish.patel/viz/Sheet2_17472382162840/Dashboard1
 
-Table Relationships: JOINs connecting vaccination and case data
 
-Performance Optimization: Indexing and query structure best practices
+### Technical Highlights
 
-Visualization Preparation: Views created for downstream dashboard integration
+Advanced SQL Techniques: Window functions, CTEs, temporary tables, views, data type conversions
 
-### Usage Instructions
+Data Aggregation: Utilized GROUP BY clauses with aggregate functions for meaningful summaries
 
-Install SQL Server Management Studio (SSMS) or compatible SQL environment
+Data Transformation: Implemented JOIN operations and calculated fields
 
-Create a new database named COVIDPROJ
+Query Optimization: Created efficient queries for complex analyses
 
-Import provided data files into the CovidDeaths and CovidVaccinations tables
+### Visualization
 
-Execute the queries sequentially to reproduce the complete analysis
+The project culminated in an interactive dashboard showing:
 
-Modify parameters within queries to focus on specific regions or timeframes
+Global COVID-19 statistics (total cases, deaths, mortality rate)
+
+Geographical distribution of infection rates
+
+Comparative analysis of worst-affected countries
+
+Time-series analysis of infection spread
+
+Continental death statistics
+
+### Business Value
+This analysis provides critical insights for:
+
+Public health officials making resource allocation decisions
+Government agencies planning intervention strategies
+Healthcare organizations preparing for patient surges
+General public understanding pandemic progression
 
 ### Data Source
 The analysis is built on the comprehensive COVID-19 dataset maintained by Our World in Data, providing a reliable foundation for epidemiological insights.
 Visualization Integration
 The project includes a pre-configured view named PercentPopulationVaccinated optimized for direct integration with visualization tools such as Tableau, Power BI, or Excel.
-Methodological Notes
+
+### Methodological Notes
 
 Null continent values are filtered to prevent data duplication
+
 Alternative calculation approaches demonstrate SQL versatility
+
 All queries are documented for easy customization and extension
